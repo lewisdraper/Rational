@@ -1,4 +1,5 @@
 #include "RationalEngine.h"
+#include "../Graphics/TextureManager.h"
 
 RationalEngine* RationalEngine::s_Instance = nullptr;
 
@@ -24,6 +25,8 @@ bool RationalEngine::Init()
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 	}
 
+	TextureManager::GetInstance()->Load("bert", "assets/bert.png");
+
 	m_IsRunning = true;
 	return m_IsRunning;
 }
@@ -37,6 +40,9 @@ void RationalEngine::Render()
 {
 	SDL_SetRenderDrawColor(m_Renderer, 80, 80, 80, 255);
 	SDL_RenderClear(m_Renderer);
+
+	TextureManager::GetInstance()->Draw("bert", 100, 100, 256, 256);
+
 	SDL_RenderPresent(m_Renderer);
 }
 
@@ -58,8 +64,10 @@ void RationalEngine::Events()
 
 bool RationalEngine::Clean()
 {
+	TextureManager::GetInstance()->Clean();
 	SDL_DestroyWindow(m_Window);
 	SDL_DestroyRenderer(m_Renderer);
+	IMG_Quit();
 	SDL_Quit();
 
 	return true;

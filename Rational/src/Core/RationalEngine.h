@@ -13,8 +13,8 @@ private:
 	RationalEngine() {};
 	static RationalEngine* s_Instance;
 	bool m_IsRunning = false;
-	SDL_Window* m_Window;
-	SDL_Renderer* m_Renderer;
+	SDL_Window* m_Window = nullptr;
+	SDL_Renderer* m_Renderer = nullptr;
 
 public:
 	static RationalEngine* GetInstance()
