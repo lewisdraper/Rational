@@ -1,7 +1,9 @@
 # Rational
-Rational Engine for 2D Games<br/><br/><br/>
+Rational Engine for 2D Games<br/><br/>
 
+Below is my first animation using the Rational Engine!
 
+![Bertie](./gifs/bert-walking.gif)
 
 ## Dependencies
 This engine requires the following:

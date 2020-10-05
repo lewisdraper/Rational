@@ -1,5 +1,6 @@
 #pragma once
 #include "Character.h"
+#include "../Animation/Animation.h"
 
 class Bertie : public Character
 {
@@ -10,6 +11,5 @@ public:
 	virtual void Clean();
 
 private:
-	int m_Row, m_Frame, m_FrameCount;
-	int m_AnimSpeed;
+	Animation* m_Animation;
 };

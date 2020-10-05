@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation\Animation.h" />
     <ClInclude Include="src\Character\Bertie.h" />
     <ClInclude Include="src\Character\Character.h" />
     <ClInclude Include="src\Core\RationalEngine.h" />
@@ -98,6 +99,7 @@
     <ClInclude Include="src\Physics\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animation\Animation.cpp" />
     <ClCompile Include="src\Character\Bertie.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Core\RationalEngine.cpp" />

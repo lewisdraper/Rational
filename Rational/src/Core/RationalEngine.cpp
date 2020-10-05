@@ -27,8 +27,8 @@ bool RationalEngine::Init()
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 	}
 
-	TextureManager::GetInstance()->Load("bert", "assets/Bertie-wagging-sheet.png");
-	bert = new Bertie(new Properties("bert", 100, 100, 64, 64, 4));
+	TextureManager::GetInstance()->Load("bert", "assets/bertwalk.png");
+	bert = new Bertie(new Properties("bert", 0, WINDOW_HEIGHT/2-128, 64, 64));
 
 	m_IsRunning = true;
 	return m_IsRunning;
