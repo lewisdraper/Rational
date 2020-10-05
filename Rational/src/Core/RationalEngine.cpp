@@ -1,7 +1,9 @@
 #include "RationalEngine.h"
 #include "../Graphics/TextureManager.h"
+#include "../Character/Bertie.h"
 
 RationalEngine* RationalEngine::s_Instance = nullptr;
+Bertie* bert = nullptr;
 
 bool RationalEngine::Init()
 {
@@ -25,7 +27,8 @@ bool RationalEngine::Init()
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 	}
 
-	TextureManager::GetInstance()->Load("bert", "assets/bert.png");
+	TextureManager::GetInstance()->Load("bert", "assets/Bertie-wagging-sheet.png");
+	bert = new Bertie(new Properties("bert", 100, 100, 64, 64, 4));
 
 	m_IsRunning = true;
 	return m_IsRunning;
@@ -33,15 +36,15 @@ bool RationalEngine::Init()
 
 void RationalEngine::Update()
 {
-
+	bert->Update(0);
 }
 
 void RationalEngine::Render()
 {
-	SDL_SetRenderDrawColor(m_Renderer, 80, 80, 80, 255);
+	SDL_SetRenderDrawColor(m_Renderer, 102, 178, 255, 255);
 	SDL_RenderClear(m_Renderer);
 
-	TextureManager::GetInstance()->Draw("bert", 100, 100, 256, 256);
+	bert->Draw();
 
 	SDL_RenderPresent(m_Renderer);
 }
