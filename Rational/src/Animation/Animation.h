@@ -8,6 +8,7 @@ public:
 	void Update();
 	void Draw(float x, float y, int spriteWidth, int spriteHeight);
 	void SetProps(std::string textureID, int spriteRow, int frameCount, int animSpeed, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	inline SDL_RendererFlip GetFlip() { return m_Flip; }
 
 private:
 	int m_SpriteRow, m_SpriteFrame;

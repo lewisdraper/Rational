@@ -1,6 +1,7 @@
 #include "RationalEngine.h"
 #include "../Graphics/TextureManager.h"
 #include "../Character/Bertie.h"
+#include "../Events/EventHandler.h"
 
 RationalEngine* RationalEngine::s_Instance = nullptr;
 Bertie* bert = nullptr;
@@ -27,9 +28,10 @@ bool RationalEngine::Init()
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 	}
 
-	TextureManager::GetInstance()->Load("bert", "assets/bertwalk.png");
-	bert = new Bertie(new Properties("bert", 0, WINDOW_HEIGHT/2-128, 64, 64));
-
+	TextureManager::GetInstance()->Load("bertWalking", "assets/bertwalk.png");
+	TextureManager::GetInstance()->Load("bertIdle", "assets/bertidle.png");
+	bert = new Bertie(new Properties("bertIdle", 0, 0, 64, 64));
+	
 	m_IsRunning = true;
 	return m_IsRunning;
 }
@@ -51,18 +53,7 @@ void RationalEngine::Render()
 
 void RationalEngine::Events()
 {
-	SDL_Event event;
-	SDL_PollEvent(&event);
-
-	switch (event.type)
-	{
-	case SDL_QUIT:
-		Quit();
-		break;
-
-	default:
-		break;
-	}
+	EventHandler::GetInstance()->Listen();
 }
 
 bool RationalEngine::Clean()

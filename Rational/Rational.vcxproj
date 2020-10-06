@@ -92,15 +92,18 @@
     <ClInclude Include="src\Character\Bertie.h" />
     <ClInclude Include="src\Character\Character.h" />
     <ClInclude Include="src\Core\RationalEngine.h" />
+    <ClInclude Include="src\Events\EventHandler.h" />
     <ClInclude Include="src\Graphics\TextureManager.h" />
     <ClInclude Include="src\Object\GameObject.h" />
     <ClInclude Include="src\Object\IObject.h" />
+    <ClInclude Include="src\Physics\RigidBody.h" />
     <ClInclude Include="src\Physics\Vector2D.h" />
     <ClInclude Include="src\Physics\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Animation\Animation.cpp" />
     <ClCompile Include="src\Character\Bertie.cpp" />
+    <ClCompile Include="src\Events\EventHandler.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Core\RationalEngine.cpp" />
     <ClCompile Include="src\Graphics\TextureManager.cpp" />
