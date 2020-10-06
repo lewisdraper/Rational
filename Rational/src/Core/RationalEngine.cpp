@@ -2,6 +2,9 @@
 #include "../Graphics/TextureManager.h"
 #include "../Character/Bertie.h"
 #include "../Events/EventHandler.h"
+#include "../Timer/Timer.h"
+#include "../Map/MapParser.h"
+#include <iostream>
 
 RationalEngine* RationalEngine::s_Instance = nullptr;
 Bertie* bert = nullptr;
@@ -28,9 +31,17 @@ bool RationalEngine::Init()
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 	}
 
-	TextureManager::GetInstance()->Load("bertWalking", "assets/bertwalk.png");
-	TextureManager::GetInstance()->Load("bertIdle", "assets/bertidle.png");
-	bert = new Bertie(new Properties("bertIdle", 0, 0, 64, 64));
+
+	if (!MapParser::GetInstance()->Load())
+	{
+		std::cout << "Failed to load map" << std::endl;
+	}
+
+	m_LevelMap = MapParser::GetInstance()->GetMap("level1");
+
+	TextureManager::GetInstance()->Load("bertWalking", "assets/characters/bertwalk.png");
+	TextureManager::GetInstance()->Load("bertIdle", "assets/characters/bertidle.png");
+	bert = new Bertie(new Properties("bertIdle", 0, 495, 64, 64));
 	
 	m_IsRunning = true;
 	return m_IsRunning;
@@ -38,14 +49,17 @@ bool RationalEngine::Init()
 
 void RationalEngine::Update()
 {
-	bert->Update(0);
+	float dt = Timer::GetInstance()->GetDeltaTime();
+	m_LevelMap->Update();
+	bert->Update(dt);
 }
 
 void RationalEngine::Render()
 {
 	SDL_SetRenderDrawColor(m_Renderer, 102, 178, 255, 255);
 	SDL_RenderClear(m_Renderer);
-
+	
+	m_LevelMap->Render();
 	bert->Draw();
 
 	SDL_RenderPresent(m_Renderer);

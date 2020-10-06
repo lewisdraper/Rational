@@ -19,5 +19,6 @@ public:
 
 	void Draw(std::string id, int x, int y, int w, int h, SDL_RendererFlip flip=SDL_FLIP_NONE);
 	void DrawFrame(std::string id, float x, float y, int w, int h, int row, int frame, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void DrawTile(std::string tilesetId, int tileSize, float x, float y, int row, int frame, SDL_RendererFlip flip = SDL_FLIP_NONE);
 };
 
