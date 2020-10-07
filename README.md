@@ -1,9 +1,15 @@
 # Rational
 Rational Engine for 2D Games<br/><br/>
 
-Below is my first animation using the Rational Engine!
+## Progress
+
+ **05/10/20** - My first animation using the Rational Engine!
 
 ![Bertie](./gifs/bert-walking.gif)
+
+**07/10/20** - Keyboard controls + levels!
+
+![Bertie](./gifs/bert-grass.gif)
 
 ## Dependencies
 This engine requires the following:
