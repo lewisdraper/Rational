@@ -13,8 +13,9 @@ TileLayer::TileLayer(int tileSize, int rowCount, int colCount, TileMap tileMap, 
 	}
 }
 
-void TileLayer::Render()
+void TileLayer::Render(float scale)
 {
+	static int cnt = 0;
 	for (unsigned int i = 0; i < m_RowCount; i++)
 	{
 		for (unsigned int j = 0; j < m_ColCount; j++)
@@ -24,15 +25,16 @@ void TileLayer::Render()
 				continue;
 			else
 			{
-				int index = 0;
+				int index = 0;;
 				if (m_Tilesets.size() > 1)
 				{
 					for (unsigned int k = 1; k < m_Tilesets.size(); k++)
 					{
-						if (tileID > m_Tilesets[k].FirstID && tileID < m_Tilesets[k].LastID)
+						if (tileID >= m_Tilesets[k].FirstID && tileID <= m_Tilesets[k].LastID)
 						{
 							tileID = tileID + m_Tilesets[k].TileCount - m_Tilesets[k].LastID;
 							index = k;
+							
 							break;
 						}
 					}
@@ -48,11 +50,11 @@ void TileLayer::Render()
 					tileCol = ts.ColCount - 1;
 				}
 
-				//std::cout << tileID << std::endl;
-				TextureManager::GetInstance()->DrawTile(ts.Name, ts.TileSize, j * ts.TileSize, i * ts.TileSize, tileRow, tileCol);
+				TextureManager::GetInstance()->DrawTile(ts.Name, ts.TileSize, ts.TileSize *  (float)j, ts.TileSize * (float)i, scale, tileRow, tileCol);
 			}
 		}
 	}
+	cnt++;
 }
 
 void TileLayer::Update()

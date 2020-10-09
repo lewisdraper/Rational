@@ -5,10 +5,10 @@
 class GameMap
 {
 public:
-	void Render()
+	void Render(float scale=1)
 	{
 		for (unsigned int i = 0; i < m_MapLayers.size(); i++)
-			m_MapLayers[i]->Render();
+			m_MapLayers[i]->Render(scale);
 	}
 
 	void Update()

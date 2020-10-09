@@ -5,7 +5,7 @@
 #include "../Map/GameMap.h"
 
 #define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 630
+#define WINDOW_HEIGHT 720 
 #define WINDOW_NAME "Rational Engine"
 
 class RationalEngine
@@ -16,7 +16,7 @@ private:
 	bool m_IsRunning = false;
 	SDL_Window* m_Window = nullptr;
 	SDL_Renderer* m_Renderer = nullptr;
-	GameMap* m_LevelMap;
+	GameMap* m_LevelMap = nullptr;
 
 public:
 	static RationalEngine* GetInstance()

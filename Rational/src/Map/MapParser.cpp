@@ -4,7 +4,7 @@ MapParser* MapParser::s_Instance = nullptr;
 
 bool MapParser::Load()
 {
-	return Parse("level1", "assets/levels/level.tmx");
+	return Parse("level", "assets/levels/level3.tmx");
 }
 
 void MapParser::Clean()
@@ -80,34 +80,34 @@ Tileset MapParser::ParseTileset(TiXmlElement* xmlTileset)
 
 TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tilesets, int tileSize, int rowCount, int colCount)
 {
-	TiXmlElement* data = nullptr;
+	std::string id;
+	TileLayer* tileLayer = nullptr;
+
 	for (TiXmlElement* e = xmlLayer->FirstChildElement(); e != nullptr; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("data"))
 		{
-			data = e;
-			break;
-		}
+			std::istringstream iss(e->GetText());
+
+			TileMap tilemap(rowCount, std::vector<int>(colCount, 0));
+
+			for (int row = 0; row < rowCount; row++)
+			{
+				for (int col = 0; col < colCount; col++)
+				{
+
+					std::getline(iss, id, ',');
+					std::stringstream convertor(id);
+					convertor >> tilemap[row][col];
+
+					if (!iss.good())
+						break;
+				}
+			}
+
+			tileLayer = new TileLayer(tileSize, rowCount, colCount, tilemap, tilesets);
+		}		
 	}
-
-	std::string matrix(data->GetText());
-	std::istringstream iss(matrix);
-	std::string id;
-
-	TileMap tilemap(rowCount, std::vector<int>(colCount, 0));
-
-	for (int row = 0; row < rowCount; row++)
-	{
-		for (int col = 0; col < colCount; col++)
-		{
-			std::getline(iss, id, ',');
-			std::stringstream convertor(id);
-			convertor >> tilemap[row][col];
-
-			if (!iss.good())
-				break;
-		}
-	}
-
-	return (new TileLayer(tileSize, rowCount, colCount, tilemap, tilesets));
+	return tileLayer;
 }
+

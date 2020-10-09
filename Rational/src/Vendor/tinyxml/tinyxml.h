@@ -166,8 +166,10 @@ enum TiXmlEncoding
 	TIXML_ENCODING_LEGACY
 };
 
+#pragma warning( push )
+#pragma warning( disable : 26812)
 const TiXmlEncoding TIXML_DEFAULT_ENCODING = TIXML_ENCODING_UNKNOWN;
-
+#pragma warning( pop ) 
 /** TiXmlBase is a base class for every class in TinyXml.
 	It does little except to establish that TinyXml classes
 	can be printed and provide some utility functions.
@@ -680,7 +682,10 @@ public:
 		The possible types are: TINYXML_DOCUMENT, TINYXML_ELEMENT, TINYXML_COMMENT,
 								TINYXML_UNKNOWN, TINYXML_TEXT, and TINYXML_DECLARATION.
 	*/
+	#pragma warning( push )
+	#pragma warning( disable : 26812)
 	int Type() const	{ return type; }
+	#pragma warning( pop ) 
 
 	/** Return a pointer to the Document this node lives in.
 		Returns null if not in a document.

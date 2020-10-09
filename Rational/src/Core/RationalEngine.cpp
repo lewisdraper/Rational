@@ -37,11 +37,11 @@ bool RationalEngine::Init()
 		std::cout << "Failed to load map" << std::endl;
 	}
 
-	m_LevelMap = MapParser::GetInstance()->GetMap("level1");
+	m_LevelMap = MapParser::GetInstance()->GetMap("level");
 
 	TextureManager::GetInstance()->Load("bertWalking", "assets/characters/bertwalk.png");
 	TextureManager::GetInstance()->Load("bertIdle", "assets/characters/bertidle.png");
-	bert = new Bertie(new Properties("bertIdle", 0, 495, 64, 64));
+	bert = new Bertie(new Properties("bertIdle", 0, 512, 64, 64));
 	
 	m_IsRunning = true;
 	return m_IsRunning;
@@ -59,8 +59,8 @@ void RationalEngine::Render()
 	SDL_SetRenderDrawColor(m_Renderer, 102, 178, 255, 255);
 	SDL_RenderClear(m_Renderer);
 	
-	m_LevelMap->Render();
-	bert->Draw();
+	m_LevelMap->Render(2);
+	bert->Draw(2);
 
 	SDL_RenderPresent(m_Renderer);
 }

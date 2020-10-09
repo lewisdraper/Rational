@@ -10,6 +10,6 @@ void Timer::Tick()
 	if (m_DeltaTime > TARGET_DELTATIME)
 		m_DeltaTime = TARGET_DELTATIME;
 
-	m_LastTime = SDL_GetTicks();
+	m_LastTime = (float) SDL_GetTicks();
 
 }

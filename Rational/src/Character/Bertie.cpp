@@ -11,9 +11,9 @@ Bertie::Bertie(Properties* props): Character(props)
 	m_RigidBody = new RigidBody();
 }
 
-void Bertie::Draw()
+void Bertie::Draw(float scale)
 {
-	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, scale);
 }
 
 void Bertie::Update(float dt)
@@ -24,12 +24,12 @@ void Bertie::Update(float dt)
 	if (EventHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_D) || EventHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_RIGHT))
 	{
 		m_Animation->SetProps("bertWalking", 1, 8, 80);
-		m_RigidBody->ApplyForceX(5);
+		m_RigidBody->ApplyForceX(8);
 	}
 	if (EventHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_A) || EventHandler::GetInstance()->GetKeyDown(SDL_SCANCODE_LEFT))
 	{
 		m_Animation->SetProps("bertWalking", 1, 8, 80, SDL_FLIP_HORIZONTAL);
-		m_RigidBody->ApplyForceX(-5);
+		m_RigidBody->ApplyForceX(-8);
 	}
 
 	m_RigidBody->Update(dt);

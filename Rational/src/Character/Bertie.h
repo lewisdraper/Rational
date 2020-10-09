@@ -7,7 +7,7 @@ class Bertie : public Character
 {
 public:
 	Bertie(Properties* props);
-	virtual void Draw();
+	virtual void Draw(float scale=1);
 	virtual void Update(float dt);
 	virtual void Clean();
 
