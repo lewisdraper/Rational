@@ -1,6 +1,7 @@
 #pragma once
 #include "IObject.h"
 #include "../Physics/Transform.h"
+#include "../Physics/Point.h"
 #include <SDL.h>
 
 #pragma warning( push )
@@ -32,7 +33,10 @@ public:
 									m_Height(props->Height), m_Flip(props->Flip)
 	{
 		m_Transform = new Transform(props->X, props->Y);
+		m_Origin = new Point((props->X + props->Width / 2), (props->Y + props->Height / 2));
 	}
+
+	inline Point* GetOrigin() { return m_Origin; }
 
 	virtual void Draw(float scale) = 0;
 	virtual void Update(float dt) = 0;
@@ -43,5 +47,7 @@ protected:
 	int m_Width, m_Height;
 	std::string m_TextureID;
 	SDL_RendererFlip m_Flip;
+	Point* m_Origin;
+
 };
 #pragma warning( pop )

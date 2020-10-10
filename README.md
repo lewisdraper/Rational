@@ -11,6 +11,10 @@ Rational Engine for 2D Games<br/><br/>
 
 ![Bertie](./gifs/bert-grass.gif)
 
+**10/10/20** - Background + scrolling camera!
+
+![Bertie](./gifs/bert-bg.gif)
+
 ## Dependencies
 This engine requires the following:
 * SDL2

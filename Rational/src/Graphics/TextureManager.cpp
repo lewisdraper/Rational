@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include "../Core/RationalEngine.h"
+#include "../Camera/Camera.h"
 
 TextureManager* TextureManager::s_Instance = nullptr;
 
@@ -45,21 +46,27 @@ void TextureManager::Clean()
 void TextureManager::Draw(std::string id, float x, float y, int srcW, int srcH, float dstW, float dstH, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect = { 0, 0, srcW, srcH };
-	SDL_FRect dstRect = { x, y, dstW, dstH };
+
+	Vector2D cam = Camera::GetInstance()->GetPosition();
+	SDL_FRect dstRect = { x - cam.X * 0.3, y - cam.Y * 0.3, dstW, dstH };
 	SDL_RenderCopyExF(RationalEngine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }
 
 void TextureManager::DrawFrame(std::string id, float x, float y, int srcW, int srcH, float dstW, float dstH, int row, int frame, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect = { srcW * frame, srcH * (row-1), srcW, srcH };
-	SDL_FRect dstRect = { x, y, dstW , dstH };
+
+	Vector2D cam = Camera::GetInstance()->GetPosition();
+	SDL_FRect dstRect = { x - cam.X, y - cam.Y, dstW , dstH };
 	SDL_RenderCopyExF(RationalEngine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }
 
 void TextureManager::DrawTile(std::string tilesetId, int tileSize, float x, float y, float scale, int row, int frame, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect = { tileSize * frame, tileSize * row, tileSize, tileSize };
-	SDL_FRect dstRect = { x * scale , y * scale + 420, tileSize* scale, tileSize* scale };
+
+	Vector2D cam = Camera::GetInstance()->GetPosition();
+	SDL_FRect dstRect = { x * scale - cam.X , y * scale - cam.Y + 50, tileSize* scale, tileSize* scale };
 	SDL_RenderCopyExF(RationalEngine::GetInstance()->GetRenderer(), m_TextureMap[tilesetId], &srcRect, &dstRect, 0, 0, flip);
 }
 #pragma warning( pop ) 

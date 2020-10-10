@@ -4,6 +4,7 @@
 #include "../Events/EventHandler.h"
 #include "../Timer/Timer.h"
 #include "../Map/MapParser.h"
+#include "../Camera/Camera.h"
 #include <iostream>
 
 RationalEngine* RationalEngine::s_Instance = nullptr;
@@ -41,7 +42,10 @@ bool RationalEngine::Init()
 
 	TextureManager::GetInstance()->Load("bertWalking", "assets/characters/bertwalk.png");
 	TextureManager::GetInstance()->Load("bertIdle", "assets/characters/bertidle.png");
-	bert = new Bertie(new Properties("bertIdle", 0, 512, 64, 64));
+	TextureManager::GetInstance()->Load("background", "assets/images/bg.png");
+	bert = new Bertie(new Properties("bertIdle", 0, 535, 64, 64));
+
+	Camera::GetInstance()->SetTarget(bert->GetOrigin());
 	
 	m_IsRunning = true;
 	return m_IsRunning;
@@ -52,6 +56,7 @@ void RationalEngine::Update()
 	float dt = Timer::GetInstance()->GetDeltaTime();
 	m_LevelMap->Update();
 	bert->Update(dt);
+	Camera::GetInstance()->Update(dt);
 }
 
 void RationalEngine::Render()
@@ -59,6 +64,7 @@ void RationalEngine::Render()
 	SDL_SetRenderDrawColor(m_Renderer, 102, 178, 255, 255);
 	SDL_RenderClear(m_Renderer);
 	
+	TextureManager::GetInstance()->Draw("background", 0, -400, 1920, 1080, 1920, 1080);
 	m_LevelMap->Render(2);
 	bert->Draw(2);
 
@@ -73,6 +79,7 @@ void RationalEngine::Events()
 bool RationalEngine::Clean()
 {
 	TextureManager::GetInstance()->Clean();
+	MapParser::GetInstance()->Clean();
 	SDL_DestroyWindow(m_Window);
 	SDL_DestroyRenderer(m_Renderer);
 	IMG_Quit();

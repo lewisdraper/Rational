@@ -2,7 +2,7 @@
 #include "Vector2D.h"
 
 #define UNI_MASS 1.0f
-#define GRAVITY 9.8f
+#define GRAVITY 0.0f
 
 class RigidBody {
 
