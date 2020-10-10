@@ -57,6 +57,12 @@
     <ClCompile Include="src\Camera\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Collision\CollisionHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Collision\CollisionBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\RationalEngine.h">
@@ -117,6 +123,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Physics\Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collision\CollisionHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collision\CollisionBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

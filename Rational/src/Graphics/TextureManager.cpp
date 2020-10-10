@@ -66,7 +66,7 @@ void TextureManager::DrawTile(std::string tilesetId, int tileSize, float x, floa
 	SDL_Rect srcRect = { tileSize * frame, tileSize * row, tileSize, tileSize };
 
 	Vector2D cam = Camera::GetInstance()->GetPosition();
-	SDL_FRect dstRect = { x * scale - cam.X , y * scale - cam.Y + 50, tileSize* scale, tileSize* scale };
+	SDL_FRect dstRect = { x * scale - cam.X , y * scale - cam.Y, tileSize* scale, tileSize* scale };
 	SDL_RenderCopyExF(RationalEngine::GetInstance()->GetRenderer(), m_TextureMap[tilesetId], &srcRect, &dstRect, 0, 0, flip);
 }
 #pragma warning( pop ) 

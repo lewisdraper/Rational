@@ -42,8 +42,9 @@ bool RationalEngine::Init()
 
 	TextureManager::GetInstance()->Load("bertWalking", "assets/characters/bertwalk.png");
 	TextureManager::GetInstance()->Load("bertIdle", "assets/characters/bertidle.png");
+	TextureManager::GetInstance()->Load("bertJump", "assets/characters/bert-jump.png");
 	TextureManager::GetInstance()->Load("background", "assets/images/bg.png");
-	bert = new Bertie(new Properties("bertIdle", 0, 535, 64, 64));
+	bert = new Bertie(new Properties("bertIdle", 0, 300, 64, 64));
 
 	Camera::GetInstance()->SetTarget(bert->GetOrigin());
 	
@@ -64,9 +65,9 @@ void RationalEngine::Render()
 	SDL_SetRenderDrawColor(m_Renderer, 102, 178, 255, 255);
 	SDL_RenderClear(m_Renderer);
 	
-	TextureManager::GetInstance()->Draw("background", 0, -400, 1920, 1080, 1920, 1080);
-	m_LevelMap->Render(2);
-	bert->Draw(2);
+	TextureManager::GetInstance()->Draw("background", 0, -300, 1920, 1080, 1920, 1080);
+	m_LevelMap->Render();
+	bert->Draw();
 
 	SDL_RenderPresent(m_Renderer);
 }

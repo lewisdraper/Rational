@@ -88,6 +88,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Collision\CollisionHandler.h" />
+    <ClInclude Include="src\Collision\CollisionBox.h" />
     <ClInclude Include="src\Physics\Point.h" />
     <ClInclude Include="src\Camera\Camera.h" />
     <ClInclude Include="src\Map\GameMap.h" />
@@ -110,6 +112,8 @@
     <ClInclude Include="src\Vendor\tinyxml\tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Collision\CollisionBox.cpp" />
+    <ClCompile Include="src\Collision\CollisionHandler.cpp" />
     <ClCompile Include="src\Camera\Camera.cpp" />
     <ClCompile Include="src\Animation\Animation.cpp" />
     <ClCompile Include="src\Character\Bertie.cpp" />
