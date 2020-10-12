@@ -15,6 +15,10 @@ Rational Engine for 2D Games<br/><br/>
 
 ![Bertie](./gifs/bert-bg.gif)
 
+**11/10/20** - Collision detection + jumping!
+
+![Bertie](./gifs/bert-jumping.gif)
+
 ## Dependencies
 This engine requires the following:
 * SDL2
